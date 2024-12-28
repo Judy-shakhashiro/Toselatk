@@ -1,0 +1,11 @@
+framework module location_plus {
+  umbrella header "location_plus-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module location_plus.Swift {
+  header "location_plus-Swift.h"
+  requires objc
+}
