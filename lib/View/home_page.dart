@@ -58,6 +58,7 @@ class _HomePageState extends State<HomePage> {
             "Portable container designed for holding liquids, primarily water, making it convenient for people to stay hydrated throughout the day",
         store_id: 45,
         price: 23,
+   id: 2,
    store_name: "any"),
     Product(
         name: "Money wallet",
@@ -65,6 +66,7 @@ class _HomePageState extends State<HomePage> {
         favourite: true,
         picture: "assets/images/wallet.jpg",
         store_name: "any",
+        id: 3,
         description:
             "Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.", price: 34),
     Product(
@@ -72,6 +74,7 @@ class _HomePageState extends State<HomePage> {
         name: "HeadPhone",
         store_name: "any",
         store_id: 245,
+        id: 2,
         picture: "assets/images/headphone.jpg",
         description:
             "Portable container designed for holding liquids, primarily water, making it convenient for people to stay hydrated throughout the day",

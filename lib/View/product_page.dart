@@ -26,6 +26,7 @@ class _ProductPageState extends State<ProductPage> {
           store_id:23,
           price: 233,
           store_name: " default store",
+        id: 1,
         favourite: false
         );
 

@@ -37,6 +37,7 @@ class Store {
 class Product {
   final String name;
   final int store_id;
+  final int id;
   final String description;
   final int price;
   final String picture;
@@ -46,6 +47,7 @@ class Product {
   const Product({
     required this.name,
     required this.store_id,
+    required this.id,
     required this.description,
     required this.price,
     required this.picture,
@@ -58,11 +60,13 @@ class Product {
     return Product(
       name: json['name'] as String,
       store_id: json['store_id'] as int,
+      id: json['id'] as int,
       description: json['description'] as String,
       price: json['price'] as int,
       picture: back_url+json['picture'] as String,
       store_name: json['store_name'] as  String,
       favourite: json['favourite'] as bool,
+
     );
   }
 }
