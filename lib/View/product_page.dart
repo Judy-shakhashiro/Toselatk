@@ -25,6 +25,8 @@ class _ProductPageState extends State<ProductPage> {
           description: "No description available.",
           store_id:23,
           price: 233,
+          store_name: " default store",
+        favourite: false
         );
 
     return Scaffold(
@@ -50,7 +52,7 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                     color: Colors.white,
                   ),
-                  child: Image.asset(
+                  child: Image.network(
                     product.picture,
                     fit: BoxFit.cover,
                   ),
@@ -82,10 +84,12 @@ class _ProductPageState extends State<ProductPage> {
                   right: MediaQuery.of(context).size.width * 0.1,
                   child: IconButton(
                     onPressed: () {},
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.favorite,
                       size: 40,
-                      color: Constans.appColor1,
+                      color: product.favourite==true?Colors.red:
+                      Colors.grey
+                      ,
                     ),
                   ),
                 ),
@@ -111,10 +115,10 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.only(top: 0, left: 24),
                   child: Text(
-                    "Shein",
+                    product.store_name!,
                     style: TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontSize: 18,
@@ -125,10 +129,10 @@ class _ProductPageState extends State<ProductPage> {
                 ),
                 Row(
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(top: 10, left: 24),
                       child: Text(
-                        r"$" "540",
+                        product.price.toString(),
                         style: TextStyle(
                           fontFamily: Constans.fontFamily,
                           fontSize: 24,
@@ -209,14 +213,14 @@ class _ProductPageState extends State<ProductPage> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 22),
-                        child: Text(
+                        child:product.description==null ?Text(
                           product.description!,
                           style: const TextStyle(
                             fontFamily: Constans.fontFamily,
                             fontSize: 17,
                             color: Colors.grey,
                           ),
-                        ),
+                        ):Text(" ")
                       ),
                     ],
                   ),

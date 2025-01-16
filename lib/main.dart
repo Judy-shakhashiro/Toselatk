@@ -12,8 +12,10 @@ import 'View/login.dart';
 import 'View/pinputcomp.dart';
 import 'View/product_page.dart';
 import 'View/products_of_store.dart';
+import 'View/search.dart';
 SharedPreferences? userData;
-String back_url="http://10.65.0.111:8000";
+String back_url="http://192.168.43.116:8000";
+//
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,11 +34,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
 
-
+debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
 
+
     textTheme: const TextTheme(
+
       headlineMedium: TextStyle(fontWeight: FontWeight.w700,fontSize: 35,letterSpacing: 2),
 
     )
@@ -53,7 +57,8 @@ class MyApp extends StatelessWidget {
       GetPage(name: '/dataEntry', page: ()=>const InfoAccount()),
       GetPage(name: '/stores', page: ()=> Stores(kind: '',)),
       GetPage(name: '/products_of_store', page:  ()=> const ProductsOfStore()),
-      GetPage(name: '/product', page: ()=>ProductPage())
+      GetPage(name: '/product', page: ()=>ProductPage()),
+      GetPage(name: '/search', page: ()=>  SearchScreen())
     ]
         
     );

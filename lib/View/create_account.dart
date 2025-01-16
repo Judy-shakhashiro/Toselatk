@@ -76,7 +76,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     return 'email not valid';
                   return null;
                 },
-                keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.emailAddress,
                 decoration:InputDecoration(
                   labelText: "email",
                   labelStyle:Theme.of(context).textTheme.bodyLarge  ,
@@ -120,7 +120,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
                 },
 
-                keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.text,
                 decoration:  InputDecoration(
                   labelText: "password",
                   labelStyle:Theme.of(context).textTheme.bodyLarge  ,
@@ -183,7 +183,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
                       userData?.setString('email',email.text);
                       userData?.setString('phone',phoneNumber.text);
-                    //  await CreateAccountFuncs.sendVerificationCode();
+                      await CreateAccountFuncs.sendVerificationCode();
                       Get.toNamed('/pinput_comp');
 
                     }

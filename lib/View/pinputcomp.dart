@@ -125,9 +125,9 @@ class _PinputCompState extends State<PinputComp> {
                 formKey.currentState!.validate();
               },
               child: MaterialButton(padding: const EdgeInsets.all(20),onPressed: () async{
-              //  bool? code= await CreateAccountFuncs.verifyCode(pinController.text);
+                bool? code= await CreateAccountFuncs.verifyCode(pinController.text);
                //code!=null&& code==true
-                if(true) {
+                if(code!=null&& code==true) {
                   Get.offAllNamed('/dataEntry');
                 }
                 else
@@ -139,12 +139,12 @@ class _PinputCompState extends State<PinputComp> {
 
                 },child: const Text('Enter verification code',style: TextStyle(fontSize: 30,color: Color.fromRGBO(30, 60, 87, 1),),),),
             ),
-            MaterialButton(padding: const EdgeInsets.all(10),onPressed: () async {
-
-            await CreateAccountFuncs.sendVerificationCode();
-            pinController.text="";
-            },child:   const Text('send new code',style: TextStyle(fontSize: 20,color: Color.fromRGBO(30, 60, 87, 1),),),
-            )
+            // MaterialButton(padding: const EdgeInsets.all(10),onPressed: () async {
+            //
+            // await CreateAccountFuncs.sendVerificationCode();
+            // pinController.text="";
+            // },child:   const Text('send new code',style: TextStyle(fontSize: 20,color: Color.fromRGBO(30, 60, 87, 1),),),
+            // )
 
           ],
         ),

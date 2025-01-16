@@ -356,6 +356,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "shimmer",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/shimmer-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/mac/development/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -446,7 +452,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-21T21:49:43.440026Z",
+  "generated": "2025-01-03T23:12:28.045156Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///Users/mac/development/flutter",

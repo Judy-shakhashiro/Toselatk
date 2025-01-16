@@ -102,10 +102,11 @@ class _DelivaryPageState extends State<DelivaryPage> {
                   ),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 12, left: 25),
                 child: Text(
-                  "Sedra Ayman",
+                  userData!.getString('first_name').toString()+
+                      userData!.getString('last_name').toString() ,
                   style: TextStyle(
                       fontSize: 23,
                       fontFamily: Constans.fontFamily,
@@ -113,10 +114,10 @@ class _DelivaryPageState extends State<DelivaryPage> {
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(top: 1, left: 25, bottom: 1),
                 child: Text(
-                  "0935473789",
+                  userData!.getString('phone').toString(),
                   style: TextStyle(
                       fontSize: 16,
                       fontFamily: Constans.fontFamily,
@@ -133,8 +134,8 @@ class _DelivaryPageState extends State<DelivaryPage> {
                       height: 25,
                       width: 25,
                     ),
-                    const Text(
-                      "Syria_Damascus",
+                     Text(
+                      userData!.getString('location').toString(),
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.grey,
@@ -201,7 +202,7 @@ class _DelivaryPageState extends State<DelivaryPage> {
                       fontWeight: FontWeight.normal),
                 ),
                 onTap: () async {
-              //  await  LoginFuncs.logout(userData!.getString('token')!);
+                await  LoginFuncs.logout(userData!.getString('token')!);
                   userData?.remove('token');
                   Get.toNamed('/login');
                   //call logout function from api
@@ -239,7 +240,7 @@ class _DelivaryPageState extends State<DelivaryPage> {
                   iconActiveColor: Colors.black,
                   text: "Search",
                   onPressed: (){
-                    Get.toNamed('/home_page');
+
                   },
                   textStyle: const TextStyle(
                       fontFamily: Constans.fontFamily,

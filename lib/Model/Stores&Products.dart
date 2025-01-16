@@ -7,27 +7,30 @@ import 'package:order_delievery/shops.dart';
 // A function that converts a response body into a List<Photo>.
 class Store {
   final String name;
-  final int typeId;
+  final int id;
   final String description;
   final String url;
   final String location;
 
+
   const Store({
     required this.name,
-    required this.typeId,
+    required this.id,
     required this.description,
     required this.url,
     required this.location,
+
   });
 
   factory Store.fromJson(Map<String, dynamic> json) {
 
     return Store(
       name: json['name'] as String,
-      typeId: json['id'] as int,
+      id: json['id'] as int,
       description: json['description'] as String,
-      url: back_url+json['picture_path'] as String,
+      url: back_url+json['picture'] as String,
       location: json['location'] as String,
+
     );
   }
 }
@@ -37,6 +40,8 @@ class Product {
   final String description;
   final int price;
   final String picture;
+  final String? store_name;
+  final bool? favourite;
 
   const Product({
     required this.name,
@@ -44,6 +49,8 @@ class Product {
     required this.description,
     required this.price,
     required this.picture,
+     this.store_name,
+     this.favourite,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -54,6 +61,8 @@ class Product {
       description: json['description'] as String,
       price: json['price'] as int,
       picture: back_url+json['picture'] as String,
+      store_name: json['store_name'] as  String,
+      favourite: json['favourite'] as bool,
     );
   }
 }
@@ -64,17 +73,22 @@ class StoresAndProduct{
 
     return parsed.map<Store>((json) => Store.fromJson(json)).toList();
   }
- static List<Product> parseProducts(String responseBody) {
-   final parsed =
-   (jsonDecode(responseBody) as List).cast<Map<String, dynamic>>();
+ static List<Product>? parseProducts(String? responseBody) {
+   if(responseBody!=null) {
+      final parsed =
+          (jsonDecode(responseBody) as List).cast<Map<String, dynamic>>();
 
-   return parsed.map<Product>((json) => Product.fromJson(json)).toList();
- }
+      return parsed.map<Product>((json) => Product.fromJson(json)).toList();
+    }
+   return null;
+  }
 static Future<String?> fetchStoresJson(String id) async {
   try{
+    var token =userData?.getString('token');
     var response= await http.post(Uri.parse(back_url+"/api/getStoresByCategory"),
         headers: <String,String>{
           'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token',
         },
         body: jsonEncode(<String,String>{
           "category_id" : id,
@@ -82,9 +96,7 @@ static Future<String?> fetchStoresJson(String id) async {
     );
     if (response.statusCode == 200) {
       print('fetched successsfully: ${['message']}');
-
       return  response.body;
-
     } else if (response.statusCode == 401) {
       final data = jsonDecode(response.body);
       print('Error: ${data['message']}');
@@ -101,9 +113,11 @@ static Future<String?> fetchStoresJson(String id) async {
 }
  static Future<String?> fetchProductsJson(String id) async {
    try{
-     var response= await http.post(Uri.parse(back_url+"/api/getProductsBystore"),
+     var token =userData?.getString('token');
+     var response= await http.post(Uri.parse(back_url+"/api/getProductsByStore"),
          headers: <String,String>{
            'Content-Type': 'application/json; charset=UTF-8',
+           'Authorization': 'Bearer $token',
          },
          body: jsonEncode(<String,String>{
            "store_id" : id,
@@ -128,15 +142,83 @@ static Future<String?> fetchStoresJson(String id) async {
    return null;
 
  }
+ static Future<String?> fetchSearchProductsJson(String searchWord) async {
+   try{
+     var token =userData?.getString('token');
+     var response= await http.post(Uri.parse(back_url+"/api/searchProducts"),
+         headers: <String,String>{
+           'Content-Type': 'application/json; charset=UTF-8',
+           'Authorization': 'Bearer $token',
+         },
+         body: jsonEncode(<String,String>{
+           "name" : searchWord,
+         })
+     );
+     if (response.statusCode == 200) {
+       print('fetched successsfully: ${['message']}');
 
- static Future<List<Product>>productsByStore(String id) async {
+       return  response.body;
+
+     } else if (response.statusCode == 401) {
+       final data = jsonDecode(response.body);
+       print('Error: ${data['message']}');
+     } else {
+       final data = jsonDecode(response.body);
+       print('Unexpected error: ${response.statusCode}');
+       print('message: ${data['message']}');
+     }
+   } catch (e) {
+     print('Error: $e');
+   }
+   return null;
+
+ }
+ static Future<String?> fetchSearchStoresJson(String searchWord) async {
+   try{
+     var token =userData?.getString('token');
+     var response= await http.post(Uri.parse(back_url+"/api/searchStores"),
+         headers: <String,String>{
+           'Content-Type': 'application/json; charset=UTF-8',
+           'Authorization': 'Bearer $token',
+         },
+         body: jsonEncode(<String,String>{
+           "name" : searchWord,
+         })
+     );
+     if (response.statusCode == 200) {
+       print('fetched successsfully: ${['message']}');
+       return  response.body;
+     } else if (response.statusCode == 401) {
+       final data = jsonDecode(response.body);
+       print('Error: ${data['message']}');
+     } else {
+       final data = jsonDecode(response.body);
+       print('Unexpected error: ${response.statusCode}');
+       print('message: ${data['message']}');
+     }
+   } catch (e) {
+     print('Error: $e');
+   }
+   return null;
+
+ }
+ static Future<List<Product>?>productsByStore(String id) async {
    var products=await fetchProductsJson(id);
-   return Shops.products=parseProducts(products!);
+   return parseProducts(products!);
+ }
+ static Future<List<Product>?>searchProducts(String searchWord) async {
+   var products=await fetchSearchProductsJson(searchWord);
+   return parseProducts(products);
  }
 
   static Future<List<Store>>storesByType(String id) async {
     var stores=await fetchStoresJson(id);
-    return Shops.shops=parseStores(stores!);
+    return parseStores(stores!);
     }
+
+ static Future<List<Store>>searchStores(String searchWord) async {
+   var stores=await fetchSearchStoresJson(searchWord);
+   return parseStores(stores!);
+ }
 
 }

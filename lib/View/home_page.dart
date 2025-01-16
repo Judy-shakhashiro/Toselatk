@@ -51,20 +51,26 @@ class _HomePageState extends State<HomePage> {
   ];
   List<Product> products = [
    const  Product(
+     favourite: false,
         name: "Water Bottle",
         picture: "assets/images/cup.jpg",
         description:
             "Portable container designed for holding liquids, primarily water, making it convenient for people to stay hydrated throughout the day",
         store_id: 45,
-        price: 23,),
+        price: 23,
+   store_name: "any"),
     Product(
         name: "Money wallet",
         store_id: 3456,
+        favourite: true,
         picture: "assets/images/wallet.jpg",
+        store_name: "any",
         description:
             "Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.", price: 34),
     Product(
+      favourite: false,
         name: "HeadPhone",
+        store_name: "any",
         store_id: 245,
         picture: "assets/images/headphone.jpg",
         description:
@@ -123,7 +129,7 @@ class _HomePageState extends State<HomePage> {
               text: "Clothes",
               icon: "assets/images/boutique.png",
               onTap: () async {
-             //  await StoresAndProduct.storesByType("1");
+                Shops.shops= await StoresAndProduct.storesByType("1");
                 Get.to(()=> Stores(kind: "assets/images/boutique.png"));
               },
             ),
@@ -131,7 +137,7 @@ class _HomePageState extends State<HomePage> {
               text: "Home&Living",
               icon: "assets/images/living-room.png",
               onTap: () async {
-                //await StoresAndProduct.storesByType("2");
+                Shops.shops= await StoresAndProduct.storesByType("2");
                 Get.to(()=> Stores(kind: "assets/images/living-room.png"));
               },
             ),
@@ -139,7 +145,7 @@ class _HomePageState extends State<HomePage> {
               text: "Beauty",
               icon: "assets/images/beauty-salon.png",
               onTap: () async {
-              //  await StoresAndProduct.storesByType("3");
+                Shops.shops=await StoresAndProduct.storesByType("3");
                 Get.to(()=> Stores(kind: "assets/images/beauty-salon.png"));
               },
             ),
@@ -147,7 +153,7 @@ class _HomePageState extends State<HomePage> {
               text: "Electronics",
               icon: "assets/images/gadget-store.png",
               onTap: () async {
-              //  await StoresAndProduct.storesByType("4");
+                Shops.shops= await StoresAndProduct.storesByType("4");
                 Get.to(()=> Stores(kind: "assets/images/gadget-store.png"));
               },
             ),
