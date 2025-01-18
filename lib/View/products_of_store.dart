@@ -20,6 +20,7 @@ class _ProductsOfStoreState extends State<ProductsOfStore> {
   @override
   Widget build(BuildContext context) {
     return Material(
+       color: Constans.screen,
       child: ListView(
         shrinkWrap: true,
         children: [
@@ -194,13 +195,13 @@ class _ProductsOfStoreState extends State<ProductsOfStore> {
                                 ),
                               ),
                             ),
-                            const SingleChildScrollView(
+                             SingleChildScrollView(
                               child: Padding(
                                 padding: EdgeInsets.only(
                                   left: 10,
                                 ),
                                 child: Text(
-                                  "Shein",
+                                  Shops.products![index].store_name.toString(),
                                   style: TextStyle(
                                     fontFamily: Constans.fontFamily,
                                     fontSize: 15,
@@ -209,16 +210,16 @@ class _ProductsOfStoreState extends State<ProductsOfStore> {
                                 ),
                               ),
                             ),
-                            const Padding(
+                           Padding(
                               padding: EdgeInsets.only(
                                 left: 10,
                               ),
                               child: Text(
-                                r"$" "540",
+                                Shops.products![index].price.toString() ,
                                 style: TextStyle(
                                   fontFamily: Constans.fontFamily,
                                   fontSize: 15,
-                                  color: Color(0xffa52a2a),
+                                  color: Colors.black54,
                                 ),
                               ),
                             ),
@@ -228,10 +229,11 @@ class _ProductsOfStoreState extends State<ProductsOfStore> {
                       Positioned(
                           child: IconButton(
                               onPressed: () {},
-                              icon: const Icon(
+                              icon:  Icon(
                                 Icons.favorite,
                                 size: 30,
-                                color: Color(0xffa52a2a),
+                                color: Shops.products![index].favourite==true?Color(0xffa52a2a)
+                                :Colors.white10,
                               )))
                     ],
                   ),

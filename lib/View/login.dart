@@ -89,7 +89,7 @@ class _LoginState extends State<Login> {
 
                 },
 
-                keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.text,
                 decoration:  InputDecoration(
                   labelText: "password",
                   labelStyle:Theme.of(context).textTheme.bodyLarge  ,
@@ -119,7 +119,7 @@ class _LoginState extends State<Login> {
 
                   if(formState.currentState!.validate()){
 
-            //       await LoginFuncs.login(phoneNumber.text, password.text);
+                   await LoginFuncs.login(phoneNumber.text, password.text);
 
                    if(userData?.getString('token')!=null)
                     Get.off(DelivaryPage());

@@ -341,7 +341,12 @@ class _InfoAccountState extends State<InfoAccount> {
              controller.location=location.text;
              controller.first_name=firstName.text;
              controller.last_name=lastName.text;
-             // await CreateAccountFuncs.dataEntry();
+             userData?.setString('first_name', firstName.text);
+             userData?.setString('last_name', lastName.text);
+             userData?.setString('location', location.text);
+             userData?.setString('phone', controller.number);
+             //photo
+              await CreateAccountFuncs.dataEntry();
               if(userData?.getString('token')!=null)
                 Get.toNamed("/delivery");
               else
