@@ -44,7 +44,7 @@ class TopHomePage extends StatelessWidget {
                 text1!,
                 style: const TextStyle(
                     fontFamily: Constans.fontFamily,
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
             ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../Model/Stores&Products.dart';
 import '../../constans.dart';
+import '../../main.dart';
 
 
 // ignore: must_be_immutable
@@ -84,14 +85,19 @@ class MostPurchased extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
-                child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.favorite,
-                      size: 30,
-                      color: Color(0xffa52a2a),
-                    )))
+            Padding(
+
+              padding: EdgeInsets.only(right : lang=="en"? 0 :150),
+              child: Positioned(
+
+                  child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.favorite,
+                        size: 30,
+                        color: Color(0xffa52a2a),
+                      ))),
+            )
           ],
         ),
       ),

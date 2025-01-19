@@ -89,7 +89,7 @@ class StoresAndProduct{
 static Future<String?> fetchStoresJson(String id) async {
   try{
     var token =userData?.getString('token');
-    var response= await http.post(Uri.parse(back_url+"/api/getStoresByCategory"),
+    var response= await http.post(Uri.parse(back_url+"/api/getStoresByCategory/+$lang"),
         headers: <String,String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
@@ -118,7 +118,7 @@ static Future<String?> fetchStoresJson(String id) async {
  static Future<String?> fetchProductsJson(String id) async {
    try{
      var token =userData?.getString('token');
-     var response= await http.post(Uri.parse(back_url+"/api/getProductsByStore"),
+     var response= await http.post(Uri.parse(back_url+"/api/getProductsByStore/+$lang"),
          headers: <String,String>{
            'Content-Type': 'application/json; charset=UTF-8',
            'Authorization': 'Bearer $token',
@@ -149,7 +149,7 @@ static Future<String?> fetchStoresJson(String id) async {
  static Future<String?> fetchSearchProductsJson(String searchWord) async {
    try{
      var token =userData?.getString('token');
-     var response= await http.post(Uri.parse(back_url+"/api/searchProducts"),
+     var response= await http.post(Uri.parse(back_url+"/api/searchProducts+$lang"),
          headers: <String,String>{
            'Content-Type': 'application/json; charset=UTF-8',
            'Authorization': 'Bearer $token',
@@ -180,7 +180,7 @@ static Future<String?> fetchStoresJson(String id) async {
  static Future<String?> fetchSearchStoresJson(String searchWord) async {
    try{
      var token =userData?.getString('token');
-     var response= await http.post(Uri.parse(back_url+"/api/searchStores"),
+     var response= await http.post(Uri.parse(back_url+"/api/searchStores/+$lang"),
          headers: <String,String>{
            'Content-Type': 'application/json; charset=UTF-8',
            'Authorization': 'Bearer $token',

@@ -27,9 +27,9 @@ class _DelivaryPageState extends State<DelivaryPage> {
               controller.selectedIndex != 2 &&
               controller.selectedIndex != 1
           ? AppBar(
-              title: const Padding(
+              title:  Padding(
                 padding: EdgeInsets.only(left: 90),
-                child: Text("HOME",
+                child: Text("1".tr,
                     style: TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontSize: 22,
@@ -64,7 +64,7 @@ class _DelivaryPageState extends State<DelivaryPage> {
                       ),
                     ),
                     Text(
-                      "TOSELATK",
+                     "2".tr,
                       style: TextStyle(
                           fontSize: 23,
                           fontFamily: Constans.fontFamily,
@@ -87,7 +87,9 @@ class _DelivaryPageState extends State<DelivaryPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    top: 25, right: MediaQuery.of(context).size.width * 0.23),
+
+                    top: 25, left: lang=="en"?MediaQuery.of(context).size.width * 0.23
+                :MediaQuery.of(context).size.width * 0.23),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.11,
                   height: MediaQuery.of(context).size.height * 0.11,
@@ -157,9 +159,9 @@ class _DelivaryPageState extends State<DelivaryPage> {
                   Icons.notifications_active_outlined,
                   color: Colors.black,
                 ),
-                title: const Text(
-                  "Notifications",
-                  style: TextStyle(
+                title:  Text(
+                  "3".tr,
+                  style: const TextStyle(
                       fontSize: 20,
                       fontFamily: Constans.fontFamily,
                       color: Colors.black,
@@ -174,8 +176,8 @@ class _DelivaryPageState extends State<DelivaryPage> {
                   Icons.shopping_cart_checkout,
                   color: Colors.black,
                 ),
-                title: const Text(
-                  "My orders",
+                title:Text(
+                  "4".tr,
                   //textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 20,
@@ -192,8 +194,8 @@ class _DelivaryPageState extends State<DelivaryPage> {
                   Icons.logout,
                   color: Colors.black,
                 ),
-                title: const Text(
-                  "Log out",
+                title: Text(
+                  "5".tr,
                   //textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 20,
@@ -227,10 +229,10 @@ class _DelivaryPageState extends State<DelivaryPage> {
               tabBackgroundColor: Colors.white,
               padding: const EdgeInsets.all(16),
               tabs: [
-                const GButton(
+                 GButton(
                   icon: Icons.home,
                   iconActiveColor: Colors.black,
-                  text: "Home",
+                  text: "8".tr,
                   textStyle: TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontWeight: FontWeight.bold),
@@ -238,7 +240,7 @@ class _DelivaryPageState extends State<DelivaryPage> {
                 GButton(
                   icon: Icons.search,
                   iconActiveColor: Colors.black,
-                  text: "Search",
+                  text: "9".tr,
                   onPressed: (){
 
                   },
@@ -246,18 +248,18 @@ class _DelivaryPageState extends State<DelivaryPage> {
                       fontFamily: Constans.fontFamily,
                       fontWeight: FontWeight.bold),
                 ),
-                const GButton(
+                GButton(
                   icon: Icons.favorite,
                   iconActiveColor: Colors.black,
-                  text: "Favorite",
+                  text: "10".tr,
                   textStyle: TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontWeight: FontWeight.bold),
                 ),
-                const GButton(
+                GButton(
                   icon: Icons.shopping_cart,
                   iconActiveColor: Colors.black,
-                  text: "Cart",
+                  text: "11".tr,
                   textStyle: TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontWeight: FontWeight.bold),

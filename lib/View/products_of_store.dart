@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:order_delievery/View/product_page.dart';
 import '../Model/Stores&Products.dart';
 import '../constans.dart';
+import '../main.dart';
 import '../shops.dart';
 
 import 'Stores.dart';
@@ -106,7 +107,7 @@ class _ProductsOfStoreState extends State<ProductsOfStore> {
                         top: 60,
                         left: 10,
                         child: Text(
-                          "address : ${Shops.shops?[storeChosen].location}",
+                         " ${"25".tr} ':' ${Shops.shops?[storeChosen].location}",
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -133,7 +134,7 @@ class _ProductsOfStoreState extends State<ProductsOfStore> {
             ],
           ),
           SizedBox(height: 10,),
-          SizedBox(child: Text("   Products from this shop  ",style:
+          SizedBox(child: Text("26".tr,style:
           TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -225,15 +226,20 @@ class _ProductsOfStoreState extends State<ProductsOfStore> {
                           ],
                         ),
                       ),
-                      Positioned(
-                          child: IconButton(
-                              onPressed: () {},
-                              icon:  Icon(
-                                Icons.favorite,
-                                size: 30,
-                                color: Shops.products![index].favourite==true?Color(0xffa52a2a)
-                                :Colors.white10,
-                              )))
+                      Padding(
+                        padding: EdgeInsets.only(right : lang=="en"? 0 :150),
+
+                        child: Positioned(
+
+                            child: IconButton(
+                                onPressed: () {},
+                                icon:  Icon(
+                                  Icons.favorite,
+                                  size: 30,
+                                  color: Shops.products![index].favourite==true?Color(0xffa52a2a)
+                                  :Colors.white10,
+                                ))),
+                      )
                     ],
                   ),
                ),

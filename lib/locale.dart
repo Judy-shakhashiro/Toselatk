@@ -1,0 +1,75 @@
+import 'package:get/get.dart';
+
+class Translation implements Translations{
+  @override
+  // TODO: implement keys
+  Map<String, Map<String, String>> get keys => {
+    "ar" :{
+      "1" :"الصفحة الرئيسية",
+      "2" : "توصيلاتك",
+      "3" :"الاشعارات",
+      "4" : " طلباتي",
+      "5" :"تسجيل الخروج",
+      "6" : "التصنيفات",
+      "7" : "الاكثر شراء",
+      "8" : "الرئيسية",
+      "9" : "بحث",
+      "10" : "المفضلة",
+      "11" : "السلة",
+      "12" : "حول المنتج",
+      "13" : "اضافة للسلة",
+      "14" : "توصيل مجاني",
+      "15" : " و توصيل سريع",
+      "16" : 'تسوق أينما كنت',
+      '17' : 'وفر وقتك',
+      '18' : 'حدد مكانك',
+      '19' : 'و الطلب يجي عندك',
+      '20' : 'ملابس',
+      '21' : 'منزل',
+      '22' : 'جمال',
+      '23' : 'الكترونيات',
+      '24' : 'متاجر',
+      '25' : 'العنوان',
+      '26' : '   منتجات من هذا المتجر',
+      '27' :'ابحث هنا...',
+      '28' :'منتج',
+      '29' : 'متجر',
+      '30' : 'لا توجد نتائج',
+    },
+    "en" :{
+      "1" :"HomePage",
+      "2" : "TOSELATAK",
+      "3" : "notification",
+      "4" : "my orders",
+      "5" : "logout" ,
+      "6" : "Categories",
+      "7" : "most purchased",
+     '8' :'Home',
+      '9' : 'search',
+      '10' :'favourite',
+      '11' :'cart',
+      '12' :'about product',
+      '13' : 'add to cart',
+      "14" : "Fastest Delivary",
+      "15" : "& Free Delivary",
+      "16" : "Shopping online",
+      "17" : "& Saving your time ",
+      "18" :"Locate You",
+      "19" :"& Your order will reach you",
+      '20' : 'Clothes',
+      '21' : 'Home&Living',
+      '22' : 'Beauty',
+      '23' : 'Electronics',
+      '24' : 'Stores',
+      '25' : 'address',
+      '26' : '   Products from this shop  ',
+      '27' :'Search here...',
+      '28' :'Product',
+      '29' : 'Store',
+      '30' : 'No results found',
+
+    }
+
+  };
+
+}

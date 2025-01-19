@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../Model/Stores&Products.dart';
 import '../constans.dart';
@@ -197,10 +198,10 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ],
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(left: 20),
                   child: Text(
-                    "About Product",
+                    "12".tr,
                     style: TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontSize: 20,
@@ -243,8 +244,8 @@ class _ProductPageState extends State<ProductPage> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: const Text(
-                  "Add to cart",
+                child:  Text(
+                  "13".tr,
                   style: TextStyle(
                     fontSize: 25,
                     fontFamily: Constans.fontFamily,

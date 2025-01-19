@@ -35,7 +35,7 @@ class MainCategory extends StatelessWidget {
           Text(
             text!,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 16,
               fontFamily: Constans.fontFamily,
               color: Colors.black,
             ),

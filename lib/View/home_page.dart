@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:order_delievery/View/Stores.dart';
 import 'package:order_delievery/View/product_page.dart';
+import 'package:order_delievery/main.dart';
 import 'package:order_delievery/shops.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -26,27 +27,27 @@ class _HomePageState extends State<HomePage> {
   List<Widget> topHome = [
     TopHomePage(
       opacity: 0.5,
-      right1: 0.45,
+      right1: 0.48,
       right2: 0.48,
       image: "assets/images/d.jpg",
-      text1: "Fastest Delivary",
-      text2: "& Free Delivary",
+      text1: "14".tr,
+      text2: "15".tr,
     ),
     TopHomePage(
       opacity: 0.8,
       right1: 0.55,
-      right2: 0.28,
+      right2: 0.48,
       image: "assets/images/ddd.jpg",
-      text1: "Locate You",
-      text2: "& Your order will reach you",
+      text1: "16".tr,
+      text2: "17".tr,
     ),
     TopHomePage(
       opacity: 0.8,
       right1: 0.45,
-      right2: 0.41,
+      right2: 0.48,
       image: "assets/images/dddd.jpg",
-      text1: "Shopping online",
-      text2: "& Saving your time ",
+      text1: "18".tr,
+      text2: "19".tr,
     ),
   ];
   List<Product> products = [
@@ -102,10 +103,12 @@ class _HomePageState extends State<HomePage> {
             )),
         Padding(
           padding: EdgeInsets.only(
-              top: 5, left: MediaQuery.of(context).size.width * 0.38),
+              top: 5, left: MediaQuery.of(context).size.width * 0.38
+          ),
           child: AnimatedSmoothIndicator(
             activeIndex: curruntIndex,
             count: 3,
+           textDirection:  lang=="ar"?TextDirection.ltr:TextDirection.ltr,
             effect: const SwapEffect(
                 dotHeight: 12,
                 dotWidth: 12,
@@ -113,13 +116,19 @@ class _HomePageState extends State<HomePage> {
                 activeDotColor: Colors.black),
           ),
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(top: 9, left: 12, bottom: 2),
-          child: Text("Category",
+          child: Text("6".tr,
               style: TextStyle(
-                fontSize: 20,
-                fontFamily: Constans.fontFamily,
-                color: Colors.black,
+
+                shadows: [
+                  Shadow(
+                      color: Colors.black45, offset: Offset(2, 2), blurRadius: 10)
+                ],
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+                color: Colors.black87,
+
               )
               // fontWeight: FontWeight.bold),
               ),
@@ -129,7 +138,7 @@ class _HomePageState extends State<HomePage> {
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             MainCategory(
-              text: "Clothes",
+              text: "20".tr,
               icon: "assets/images/boutique.png",
               onTap: () async {
                 Shops.shops= await StoresAndProduct.storesByType("1");
@@ -137,7 +146,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             MainCategory(
-              text: "Home&Living",
+              text: "21".tr,
               icon: "assets/images/living-room.png",
               onTap: () async {
                 Shops.shops= await StoresAndProduct.storesByType("2");
@@ -145,7 +154,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             MainCategory(
-              text: "Beauty",
+              text: "22".tr,
               icon: "assets/images/beauty-salon.png",
               onTap: () async {
                 Shops.shops=await StoresAndProduct.storesByType("3");
@@ -153,7 +162,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             MainCategory(
-              text: "Electronics",
+              text: "23".tr,
               icon: "assets/images/gadget-store.png",
               onTap: () async {
                 Shops.shops= await StoresAndProduct.storesByType("4");
@@ -162,13 +171,20 @@ class _HomePageState extends State<HomePage> {
             ),
           ]),
         ),
-        const Padding(
+         Padding(
           padding: EdgeInsets.only(top: 2, left: 12, bottom: 10),
-          child: Text("Most purchased",
+          child: Text("7".tr,
               style: TextStyle(
-                fontSize: 20,
+
                 fontFamily: Constans.fontFamily,
-                color: Colors.black,
+                shadows: [
+                  Shadow(
+                      color: Colors.black45, offset: Offset(2, 2), blurRadius: 10)
+                ],
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+                color: Colors.black87,
+
               )
               // fontWeight: FontWeight.bold),
               ),

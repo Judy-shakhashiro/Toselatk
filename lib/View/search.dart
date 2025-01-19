@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:order_delievery/Model/Stores&Products.dart';
 import 'package:order_delievery/View/components/products_grid_comp.dart';
 import 'package:order_delievery/View/components/stores_list_comp.dart';
@@ -67,7 +68,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         controller: searchWord,
                         cursorColor: Colors.grey,
                         decoration: InputDecoration(
-                          hintText: "Search here...",
+                          hintText: "27".tr,
                           contentPadding: EdgeInsets.symmetric(
                             vertical: 15,
                             horizontal: 20,
@@ -110,11 +111,11 @@ class _SearchScreenState extends State<SearchScreen> {
                           items: [
                             DropdownMenuItem(
                               value: "product",
-                              child: Text("Product"),
+                              child: Text("28".tr),
                             ),
                             DropdownMenuItem(
                               value: "store",
-                              child: Text("Store"),
+                              child: Text("29".tr),
                             ),
                           ],
                           onChanged: (value) {
@@ -138,7 +139,7 @@ class _SearchScreenState extends State<SearchScreen> {
               child: isLoading
                   ? LoadingAnimation(searchType: searchType)
                   : (products==null &&searchType=="product"||shops!.isEmpty &&searchType=="store")
-                  ? Center(child: Text("No results found"))
+                  ? Center(child: Text("30".tr))
                   : searchType == "store"
                   ? StoresListComp(shops: shops!)
                   : ProductsGridComp(products: products!)

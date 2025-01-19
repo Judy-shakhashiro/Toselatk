@@ -236,12 +236,6 @@
       "languageVersion": "3.1"
     },
     {
-      "name": "location_plus",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/location_plus-1.0.6",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "lottie",
       "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/lottie-3.1.3",
       "packageUri": "lib/",
@@ -452,7 +446,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-01-03T23:12:28.045156Z",
+  "generated": "2025-01-19T06:01:01.883112Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///Users/mac/development/flutter",
