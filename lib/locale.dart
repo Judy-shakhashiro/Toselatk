@@ -35,6 +35,12 @@ class Translation implements Translations{
       '28' :'منتج',
       '29' : 'متجر',
       '30' : 'لا توجد نتائج',
+      '31' : 'المفضلة',
+      '32' : 'المفضلة فارغة',
+      '33' : 'السلة',
+      '34' : 'ادفع',
+      '35' : 'الكمية',
+
     },
     "en" :{
       "1" :"HomePage",
@@ -67,6 +73,11 @@ class Translation implements Translations{
       '28' :'Product',
       '29' : 'Store',
       '30' : 'No results found',
+      '31' : 'FAVOURITE',
+      '32' : 'favourite is empty',
+      '33' : 'CART',
+      '34' : 'checkout',
+      '35' : 'quantity',
 
     }
 

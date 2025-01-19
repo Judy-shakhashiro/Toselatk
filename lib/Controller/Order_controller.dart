@@ -10,7 +10,7 @@ class OrderController extends GetxController {
   Future<List<Order>?> getOrders() async {
     try {
     List jsonData = await Api().get(
-        url: "$back_url/api/getUserOrders",
+        url: "$back_url/api/getUserOrders/$lang",
         token: userData?.getString('token'));
 
     for (var i = 0; i < jsonData.length; i++) {

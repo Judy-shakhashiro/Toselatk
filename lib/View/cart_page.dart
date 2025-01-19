@@ -21,9 +21,9 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
       backgroundColor: const Color(0xfff3f4f6),
       appBar: AppBar(
-        title: const Padding(
+        title:  Padding(
           padding: EdgeInsets.only(left: 160),
-          child: Text("CART",
+          child: Text("33".tr,
               style: TextStyle(
                 fontFamily: Constans.fontFamily,
                 fontSize: 22,
@@ -72,7 +72,7 @@ class _CartPageState extends State<CartPage> {
                                       controller.update();
                                     },
                                     widget: Text(
-                                      "Quantity: ${cartList[index].quantity.toString()}",
+                                    " ${"35".tr} : ${cartList[index].quantity.toString()}",
                                       style: const TextStyle(
                                           fontFamily: Constans.fontFamily,
                                           fontSize: 18,
@@ -212,8 +212,8 @@ class _CartPageState extends State<CartPage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: const Text(
-                          "Checkout",
+                        child:  Text(
+                          "34".tr,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25,

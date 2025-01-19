@@ -8,14 +8,14 @@ class FavoriteController extends GetxController {
   List<Product> favoriteList = [];
   Future<void> addToFavorite(int? productId) async {
     await Api().post(
-        url: "$back_url/api/makeProductFavorite",
+        url: "$back_url/api/makeProductFavorite/"+lang,
         body: {"id": productId.toString()},
         token: userData?.getString('token'));
   }
 
   Future<void> removeFavorite(int? productId) async {
     await Api().post(
-        url: "$back_url/api/makeProductUnFavorite",
+        url: "$back_url/api/makeProductUnFavorite/",
         body: {"id": productId.toString()},
         token: userData?.getString('token'));
   }
@@ -23,7 +23,7 @@ class FavoriteController extends GetxController {
   Future<List<Product>?> getFavoriteProducts() async {
     try {
       List jsonData = await Api().get(
-          url: "$back_url/api/getFavoriteList",
+          url: "$back_url/api/getFavoriteList/$lang",
           token: userData?.getString('token'));
 
       for (var i = 0; i < jsonData.length; i++) {

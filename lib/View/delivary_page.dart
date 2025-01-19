@@ -85,7 +85,7 @@ class _DelivaryPageState extends State<DelivaryPage> {
               Padding(
                 padding: EdgeInsets.only(
 
-                    top: 25, left: lang=="en"?MediaQuery.of(context).size.width * 0.23
+                    top: 25, left: lang=="en"?MediaQuery.of(context).size.width * 0.23/10
                 :MediaQuery.of(context).size.width * 0.23),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.11,

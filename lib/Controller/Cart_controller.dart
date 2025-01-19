@@ -69,7 +69,7 @@ class CartController extends GetxController {
   Future<List<Product>?> getCartProducts() async {
     try {
       List jsonData = await Api().get(
-          url: "$back_url/api/getCart", token: userData?.getString('token'));
+          url: "$back_url/api/getCart/$lang", token: userData?.getString('token'));
 
       for (var i = 0; i < jsonData.length; i++) {
         cartList.add(Product.fromJson1(jsonData, i));

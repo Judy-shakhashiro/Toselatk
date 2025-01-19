@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -28,9 +29,9 @@ class _FavoritePageState extends State<FavoritePage> {
     return Scaffold(
         backgroundColor: Constans.screen,
         appBar: AppBar(
-          title: const Padding(
+          title:  Padding(
             padding: EdgeInsets.only(left: 130),
-            child: Text("FAVORITE",
+            child: Text("31".tr,
                 style: TextStyle(
                   fontFamily: Constans.fontFamily,
                   fontSize: 22,
@@ -111,8 +112,8 @@ class _FavoritePageState extends State<FavoritePage> {
                           }))
                       : Container(
                           padding: const EdgeInsets.only(top: 300, left: 45),
-                          child: const Text(
-                            "Your favorite list is empty",
+                          child: Text(
+                            "32".tr,
                             style: TextStyle(
                                 fontSize: 25,
                                 fontFamily: Constans.fontFamily,
