@@ -1,15 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:order_delievery/Controller/mostPurchased_controller.dart';
 import 'package:order_delievery/View/Stores.dart';
 import 'package:order_delievery/View/product_page.dart';
 import 'package:order_delievery/main.dart';
 import 'package:order_delievery/shops.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-
 import '../Model/Stores&Products.dart';
-
 import '../constans.dart';
 import 'Widegt/main_category.dart';
 import 'Widegt/most_purchased.dart';
@@ -24,6 +23,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int curruntIndex = 0;
+  MostPurchasedController controller =
+      Get.put(MostPurchasedController(), permanent: true);
   List<Widget> topHome = [
     TopHomePage(
       opacity: 0.5,
@@ -50,37 +51,18 @@ class _HomePageState extends State<HomePage> {
       text2: "19".tr,
     ),
   ];
-  List<Product> products = [
-   const  Product(
-     favourite: false,
-        name: "Water Bottle",
-        picture: "assets/images/cup.jpg",
-        description:
-            "Portable container designed for holding liquids, primarily water, making it convenient for people to stay hydrated throughout the day",
-        store_id: 45,
-        price: 23,
-   id: 2,
-   store_name: "any"),
-    Product(
-        name: "Money wallet",
-        store_id: 3456,
-        favourite: true,
-        picture: "assets/images/wallet.jpg",
-        store_name: "any",
-        id: 3,
-        description:
-            "Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.Portable case designed to hold and organize personal items, primarily money, identification, and payment cards.", price: 34),
-    Product(
-      favourite: false,
-        name: "HeadPhone",
-        store_name: "any",
-        store_id: 245,
-        id: 2,
-        picture: "assets/images/headphone.jpg",
-        description:
-            "Portable container designed for holding liquids, primarily water, making it convenient for people to stay hydrated throughout the day",
-        price: 234)
-  ];
+
+
+  Future<List<Product>?>? mostPurchased;
+
+  @override
+  void initState() {
+    super.initState();
+
+    mostPurchased = MostPurchasedController().getMostPurchased();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 });
               },
               viewportFraction: 0.99,
-              autoPlay: false,
+              autoPlay: true,
               autoPlayInterval: const Duration(seconds: 6),
             )),
         Padding(
@@ -141,32 +123,40 @@ class _HomePageState extends State<HomePage> {
               text: "20".tr,
               icon: "assets/images/boutique.png",
               onTap: () async {
+
                 Shops.shops= await StoresAndProduct.storesByType("1");
                 Get.to(()=> Stores(kind: "assets/images/boutique.png"));
+
               },
             ),
             MainCategory(
               text: "21".tr,
               icon: "assets/images/living-room.png",
               onTap: () async {
+
                 Shops.shops= await StoresAndProduct.storesByType("2");
                 Get.to(()=> Stores(kind: "assets/images/living-room.png"));
+
               },
             ),
             MainCategory(
               text: "22".tr,
               icon: "assets/images/beauty-salon.png",
               onTap: () async {
+
                 Shops.shops=await StoresAndProduct.storesByType("3");
                 Get.to(()=> Stores(kind: "assets/images/beauty-salon.png"));
+
               },
             ),
             MainCategory(
               text: "23".tr,
               icon: "assets/images/gadget-store.png",
               onTap: () async {
+
                 Shops.shops= await StoresAndProduct.storesByType("4");
                 Get.to(()=> Stores(kind: "assets/images/gadget-store.png"));
+
               },
             ),
           ]),
@@ -189,26 +179,67 @@ class _HomePageState extends State<HomePage> {
               // fontWeight: FontWeight.bold),
               ),
         ),
-        SizedBox(
-          height: 250,
-
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: products.length,
-                itemBuilder: (context, index) {
-                  return MostPurchased(
-
-                    product: products[index],
-                    onTap: () {
-                      Get.to(ProductPage(
-                        product: products[index],
-                      ));
-                    },
-                  );
-                }),
-          ),
-
+        FutureBuilder<List<Product>?>(
+            future: mostPurchased,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return getShimmermostPurchased();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else if (snapshot.data == null) {
+                return getShimmermostPurchased();
+              } else if (snapshot.hasData) {
+                List<Product> mostPurchasedList = snapshot.data!;
+                return mostPurchasedList.isNotEmpty
+                    ? SizedBox(
+                        height: 230,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: mostPurchasedList.length,
+                            itemBuilder: (context, index) {
+                              return MostPurchased(
+                                product: mostPurchasedList[index],
+                                onTap: () {
+                                  Get.to(ProductPage(
+                                    product: mostPurchasedList[index],
+                                  ));
+                                },
+                              );
+                            }),
+                      )
+                    : Container();
+              } else {
+                return getShimmermostPurchased();
+              }
+            })
       ]),
+    );
+  }
+
+  Shimmer getShimmermostPurchased() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: SizedBox(
+        height: 230,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              return Card(
+                // margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                elevation: 4,
+                clipBehavior: Clip.antiAlias,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18)),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.18,
+                  width: MediaQuery.of(context).size.height * 0.21,
+                  color: Colors.white,
+                ),
+              );
+            }),
+      ),
     );
   }
 }

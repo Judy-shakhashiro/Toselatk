@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:order_delievery/Model/LoginFuncs.dart';
+import 'package:order_delievery/View/order_page.dart';
 import 'package:order_delievery/main.dart';
 import '../Controller/pages_controller.dart';
 import '../constans.dart';
-import 'home_page.dart';
 
 // ignore: must_be_immutable
 class DelivaryPage extends StatefulWidget {
@@ -72,9 +72,6 @@ class _DelivaryPageState extends State<DelivaryPage> {
                             ..shader = const LinearGradient(
                               colors: <Color>[
                                 Color(0xfff5bd1f),
-                                // Color(0xff915f6d),
-                                // Color(0xff915f6d),
-                                // Color(0xff915f6d),
                                 Color(0xffbd0505),
                                 Color(0xffffea00),
                               ],
@@ -154,23 +151,25 @@ class _DelivaryPageState extends State<DelivaryPage> {
                 endIndent: 23,
                 color: Colors.black,
               ),
-              ListTile(
-                leading: const Icon(
-                  Icons.notifications_active_outlined,
-                  color: Colors.black,
-                ),
-                title:  Text(
-                  "3".tr,
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontFamily: Constans.fontFamily,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal),
-                ),
-                onTap: () {
-                  Get.to(const HomePage());
-                },
-              ),
+
+              // ListTile(
+              //   leading: const Icon(
+              //     Icons.notifications_active_outlined,
+              //     color: Colors.black,
+              //   ),
+              //   title: const Text(
+              //     "Notifications",
+              //     style: TextStyle(
+              //         fontSize: 20,
+              //         fontFamily: Constans.fontFamily,
+              //         color: Colors.black,
+              //         fontWeight: FontWeight.normal),
+              //   ),
+              //   onTap: () {
+              //     Get.to(const HomePage());
+              //   },
+              // ),
+
               ListTile(
                 leading: const Icon(
                   Icons.shopping_cart_checkout,
@@ -186,7 +185,7 @@ class _DelivaryPageState extends State<DelivaryPage> {
                       fontWeight: FontWeight.normal),
                 ),
                 onTap: () {
-                  Get.to(const HomePage());
+                  Get.to(const OrderPage());
                 },
               ),
               ListTile(

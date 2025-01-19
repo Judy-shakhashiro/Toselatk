@@ -1,38 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:order_delievery/Controller/Cart_controller.dart';
+import 'package:order_delievery/Controller/favorite_controller.dart';
+
 import '../Model/Stores&Products.dart';
 import '../constans.dart';
 
 // ignore: must_be_immutable
 class ProductPage extends StatefulWidget {
-  final Product? product;
+  Product? product;
   int amount = 1;
 
-  ProductPage({super.key,  this.product});
+  ProductPage({super.key, this.product});
 
   @override
   State<ProductPage> createState() => _ProductPageState();
 }
 
 class _ProductPageState extends State<ProductPage> {
+  CartController controller = Get.put(CartController(), permanent: true);
+
+  FavoriteController controllerF =
+      Get.put(FavoriteController(), permanent: true);
   @override
   Widget build(BuildContext context) {
     // Use a fallback product if the provided product is null
     final product = widget.product ??
-      const   Product(
-          name: "Default Product",
-          picture: "assets/default_image.png", // Provide a default image
-          description: "No description available.",
-          store_id:23,
-          price: 233,
-          store_name: " default store",
-        id: 1,
-        favourite: false
-        );
+
+
+        Product(
+            name: "Default Product",
+            picture: "assets/default_image.png", // Provide a default image
+            description: "No description available.",
+            store_id: 23,
+            price: 233,
+            store_name: " default store",
+            id: 1,
+            favourite: false);
+
 
     return Scaffold(
-      backgroundColor: const Color(0xfff3f4f6),
+      backgroundColor: Constans.screen,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -81,20 +90,38 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                 ),
-                Positioned(
-                  top: MediaQuery.of(context).size.height * 0.466,
-                  right: MediaQuery.of(context).size.width * 0.1,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.favorite,
-                      size: 40,
-                      color: product.favourite==true?Colors.red:
-                      Colors.grey
-                      ,
+
+                GetBuilder<FavoriteController>(builder: (controller) {
+                  return Positioned(
+                    top: MediaQuery.of(context).size.height * 0.456,
+                    right: MediaQuery.of(context).size.width * 0.1,
+                    child: IconButton(
+                      onPressed: () {
+                        if (product.favourite == false) {
+                          controllerF.addToFavorite(product.id).then((value) {
+                            product.favourite = true;
+                            controllerF.update();
+                          });
+                        } else {
+                          controllerF.removeFavorite(product.id).then((value) {
+                            product.favourite = false;
+                            controllerF.update();
+                          });
+                        }
+                      },
+                      icon: Icon(
+                        product.favourite == true
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        size: 50,
+                        color: product.favourite == true
+                            ? const Color(0xffa52a2a)
+                            : Constans.appColor1,
+                      ),
+
                     ),
-                  ),
-                ),
+                  );
+                }),
               ],
             ),
           ),
@@ -108,7 +135,7 @@ class _ProductPageState extends State<ProductPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15, left: 23),
                   child: Text(
-                    product.name!,
+                    product.name,
                     style: const TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontSize: 28,
@@ -117,11 +144,13 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                 ),
-                 Padding(
-                  padding: EdgeInsets.only(top: 0, left: 24),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 0, left: 24),
                   child: Text(
                     product.store_name!,
-                    style: TextStyle(
+                    style: const TextStyle(
+
                       fontFamily: Constans.fontFamily,
                       fontSize: 18,
                       color: Colors.grey,
@@ -132,20 +161,24 @@ class _ProductPageState extends State<ProductPage> {
                 Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 10, left: 24),
-                      child: Text(
-                        product.price.toString(),
-                        style: TextStyle(
-                          fontFamily: Constans.fontFamily,
-                          fontSize: 24,
-                          color: Constans.appColor1,
-                          fontWeight: FontWeight.w600,
+
+                      padding: const EdgeInsets.only(top: 10, left: 24),
+                      child: SingleChildScrollView(
+                        child: Text(
+                          product.price.toString(),
+                          style: const TextStyle(
+                            fontFamily: Constans.fontFamily,
+                            fontSize: 24,
+                            color: Constans.appColor1,
+                            fontWeight: FontWeight.w600,
+                          ),
+
                         ),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.5,
+                        left: MediaQuery.of(context).size.width * 0.45,
                         top: 10,
                       ),
                       child: Container(
@@ -162,7 +195,7 @@ class _ProductPageState extends State<ProductPage> {
                             InkWell(
                               onTap: () {
                                 setState(() {
-                                  widget.amount++;
+                                  controller.amount++;
                                 });
                               },
                               child: const Icon(
@@ -172,7 +205,7 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             ),
                             Text(
-                              "${widget.amount}",
+                              "${controller.amount}",
                               style: const TextStyle(
                                 fontFamily: Constans.fontFamily,
                                 fontSize: 23,
@@ -183,7 +216,8 @@ class _ProductPageState extends State<ProductPage> {
                             InkWell(
                               onTap: () {
                                 setState(() {
-                                  if (widget.amount > 1) widget.amount--;
+                                  if (controller.amount > 1)
+                                    controller.amount--;
                                 });
                               },
                               child: const Icon(
@@ -214,16 +248,19 @@ class _ProductPageState extends State<ProductPage> {
                   child: ListView(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 22),
-                        child:product.description==null ?Text(
-                          product.description!,
-                          style: const TextStyle(
-                            fontFamily: Constans.fontFamily,
-                            fontSize: 17,
-                            color: Colors.grey,
-                          ),
-                        ):Text(" ")
-                      ),
+
+                          padding: const EdgeInsets.only(left: 22),
+                          child: product.description != null
+                              ? Text(
+                                  product.description,
+                                  style: const TextStyle(
+                                    fontFamily: Constans.fontFamily,
+                                    fontSize: 17,
+                                    color: Colors.grey,
+                                  ),
+                                )
+                              : const Text(" ")),
+
                     ],
                   ),
                 ),
@@ -237,22 +274,42 @@ class _ProductPageState extends State<ProductPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
               child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Constans.appColor1,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                  onPressed: () async {
+                    setState(() {
+                      controller.isloading = true;
+                    });
+                    try {
+                      await controller.addToCart(productID: product.id!);
+                    } catch (e) {
+                      Get.snackbar(
+                          'Error', 'No Internet. Please try again later.',
+                          backgroundGradient: LinearGradient(
+                              colors: [Colors.red, Colors.white]),
+                          snackPosition: SnackPosition.BOTTOM);
+                    }
+
+                    setState(() {
+                      controller.isloading = false;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Constans.appColor1,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
-                ),
-                child:  Text(
-                  "13".tr,
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontFamily: Constans.fontFamily,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
+
+                  child: controller.isloading == false
+                      ?  Text(
+                          "13".tr,
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontFamily: Constans.fontFamily,
+                            color: Colors.black,
+                          ),
+                        )
+                      : const CircularProgressIndicator()),
+
             ),
           )
         ],

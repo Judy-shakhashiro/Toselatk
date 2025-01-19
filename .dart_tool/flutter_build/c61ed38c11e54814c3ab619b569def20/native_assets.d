@@ -1,0 +1,1 @@
+ C:\\Users\\USER\\Desktop\\Programming\ Language\\n\\Toselatk\\.dart_tool\\flutter_build\\c61ed38c11e54814c3ab619b569def20\\native_assets.yaml: 
