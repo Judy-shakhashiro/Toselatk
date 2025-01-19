@@ -1,0 +1,1 @@
+ /Users/mac/Downloads/Toselatak-main/.dart_tool/flutter_build/be1e6a45e92a252d8f49acd9d8cae850/native_assets.yaml: 
